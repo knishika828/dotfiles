@@ -1,0 +1,33 @@
+shell:
+  program: /bin/zsh
+  args:
+    - -l
+    - -c
+    - "tmux a -t 0 || tmux -u"
+
+env:
+  TERM: alacritty
+
+window:
+  dimensions:
+    columns: 180
+    lines: 60
+  padding:
+    x: 8
+    y: 4
+
+scrolling:
+  history: 100000
+  multiplier: 3
+  auto_scroll: false
+
+font:
+  size: 18.0
+  offset:
+    y: 2
+  normal:
+    family: 'HackGen Console NF'
+    style: Regular
+  bold:
+    family: 'HackGen Console NF'
+    style: Regular
