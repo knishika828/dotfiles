@@ -29,10 +29,10 @@ zinit wait lucid blockf light-mode for \
 
 # FZF Settings
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_TMUX_OPTS="-p 80%,60%"
+export FZF_TMUX_OPTS="-p 90%"
 export FZF_DEFAULT_OPTS="--layout=reverse"
 export FZF_DEFAULT_COMMAND="rg --files --hidden"
-export FZF_CTRL_T_OPTS='--preview "bat  --color=always --style=header,grid --line-range :100 {}"'
+export FZF_CTRL_T_OPTS='--preview "bat --color=always --style=header,grid,numbers --line-range :100 {}"'
 export FZF_CTRL_T_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 
 # Complement
