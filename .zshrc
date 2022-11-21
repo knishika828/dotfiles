@@ -27,6 +27,11 @@ zinit wait lucid blockf light-mode for \
     @'b4b4r07/enhancd' \
     @'wfxr/forgit'
 
+# Prompt
+if [ -e `which starship` ]; then
+  eval "$(starship init zsh)"
+fi
+
 # FZF Settings
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_TMUX_OPTS="-p 90%"
