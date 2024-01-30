@@ -1,6 +1,6 @@
 # dotfiles
 
-## WSL2
+## WSL2 && Ubuntu
 ```bash
 $ sudo apt-get update -y
 $ sudo apt-get upgrade -y
@@ -16,3 +16,4 @@ $ source ~/.zshrc
 $ make runtime
 $ make install
 ```
+
