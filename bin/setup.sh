@@ -1,7 +1,6 @@
 #!/bin/bash
 
-kernel_version=$(uname -r)
-if echo "$kernel_version" | grep -q WSL2; then
+if grep -qi Microsoft /proc/version; then
     echo "Setup for WSL2"
     bash "$PWD/bin/setup_wsl.sh"
 else
