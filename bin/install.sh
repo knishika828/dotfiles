@@ -10,7 +10,10 @@ if echo "$kernel_version" | grep -q WSL2; then
     ln -sfn $PWD/.config/starship ~/.config/
     echo "Created ~/.config/starship"
     ## Tmux
-    ln -sfn $PWD/.config/tmux ~/.config/
+    if [ ! -d "$XDG_CONFIG_HOME/tmux" ]; then
+      mkdir -p "$XDG_CONFIG_HOME/tmux"
+    fi
+    ln -sf $PWD/.config/tmux/wsl2_tmux.conf $XDG_CONFIG_HOME/tmux/tmux.conf
     echo "Created ~/.config/tmux"
     ## Nvim
     ln -sfn $PWD/.config/nvim ~/.config/
