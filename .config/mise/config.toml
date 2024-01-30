@@ -1,0 +1,6 @@
+[tools]
+rust = "latest"
+python = "latest"
+node = "latest"
+java = "openjdk-17"
+go = "latest"
