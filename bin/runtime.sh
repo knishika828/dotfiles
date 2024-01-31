@@ -19,10 +19,10 @@ fi
 #######################################################
 virtualenv_for_neovim="$HOME/.local/share/virtualenvs/neovim"
 if [ -d "$virtualenv_for_neovim" ]; then
-    echo "Python Virtualenv is already set up."
+  echo "Python Virtualenv is already set up."
 else
-    python -m venv "$virtualenv_for_neovim"
-    . "$virtualenv_for_neovim/bin/activate"
-    pip install neovim
-    deactivate
+  python -m venv "$virtualenv_for_neovim"
+  . "$virtualenv_for_neovim/bin/activate"
+  pip install neovim
+  deactivate
 fi

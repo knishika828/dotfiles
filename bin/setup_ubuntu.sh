@@ -91,28 +91,56 @@ fi
 
 
 #######################################################
+# Alacritty
+#######################################################
+if command -v alacritty &> /dev/null; then
+    echo "Alacritty is already installed"
+else
+    # Install necessary packages
+    sudo apt-get install -yqq cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3
+
+    # Clone the repository
+    git clone https://github.com/alacritty/alacritty.git
+
+    # Build Alacritty
+    (cd alacritty && cargo build --release -q)
+
+    # Install Alacritty
+    sudo tic -xe alacritty,alacritty-direct alacritty/extra/alacritty.info
+    sudo cp alacritty/target/release/alacritty /usr/local/bin
+    sudo cp alacritty/extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
+    sudo desktop-file-install alacritty/extra/linux/Alacritty.desktop
+    sudo update-desktop-database
+
+    # Remove unnecessary files
+    sudo rm -rf alacritty
+    echo "Alacritty installation completed"
+fi
+
+
+#######################################################
 # Neovim 
 #######################################################
 curl -sLO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
 if [ $? -ne 0 ]; then
-  echo "Failed to download Neovim. Exiting the script."
-  exit 1
+    echo "Failed to download Neovim. Exiting the script."
+    exit 1
 fi
 chmod u+x nvim.appimage
 
 # Remove nvim.appimage if the extraction is successful
 sudo ./nvim.appimage --appimage-extract > /dev/null 2>&1
 if [ -d "squashfs-root" ]; then
-  rm nvim.appimage
+    rm nvim.appimage
 else
-  echo "Extraction might have failed. Continuing without removing nvim.appimage."
-  exit 1
+    echo "Extraction might have failed. Continuing without removing nvim.appimage."
+    exit 1
 fi
 
 # Remove /squashfs-root if it exists at the root
 # Consider alternative methods if any issues arise
 if [ -d "/squashfs-root" ]; then
-  sudo rm -rf /squashfs-root
+    sudo rm -rf /squashfs-root
 fi
 sudo mv squashfs-root /
 sudo ln -sf /squashfs-root/AppRun /usr/bin/nvim
@@ -129,4 +157,25 @@ if command -v mise &> /dev/null; then
 else
   curl https://mise.jdx.dev/install.sh | sh
   echo "mise installation completed"
+fi
+
+#######################################################
+# Fonts
+#######################################################
+font_path="/usr/local/share/fonts/PlemolJP_NF_v1.6.0"
+if [ -e "$font_path" ]; then
+    echo "Fonts are already installed"
+else
+    # Download the fonts
+    FONT_URL="https://github.com/yuru7/PlemolJP/releases/download/v1.6.0/PlemolJP_NF_v1.6.0.zip"
+    ZIP_FILE="PlemolJP_NF_v1.6.0.zip"
+    EXTRACTED_DIR="PlemolJP_NF_v1.6.0"
+    wget -q "$FONT_URL" || { echo "Failed to download fonts. Aborting."; exit 1; }
+
+    # Install the fonts
+    unzip -q "$ZIP_FILE" || { echo "Failed to unzip fonts. Aborting."; exit 1; }
+    sudo cp -r "$EXTRACTED_DIR" /usr/local/share/fonts/ || { echo "Failed to move fonts. Aborting."; exit 1; }
+    sudo fc-cache -f -v 2>&1 | grep -q "succeeded" || { echo "Failed to update font cache."; exit 1; }
+    rm -r "$ZIP_FILE" "$EXTRACTED_DIR" || { echo "Failed to delete files."; exit 1; }
+    echo "Fonts installation completed"
 fi
