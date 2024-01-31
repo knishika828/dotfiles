@@ -1,0 +1,14 @@
+# 検索対象: $XDG_DATA_HOME/applications or $XDG_DATA_DIRS/application
+show=drun
+# 表示するWindowの高さ
+width=50%
+# 表示するWindowの幅
+height=70%
+# アプリケーションイメージがあれば表示する
+allow_images=true
+# アプリケーションイメージの表示サイズ(default 32)
+image_size=64
+# デフォルトターミナル
+term=alacrity
+# スクロールバーを非表示
+hide_scroll=true

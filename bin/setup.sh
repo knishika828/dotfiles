@@ -6,6 +6,9 @@ if grep -qi Microsoft /proc/version; then
 elif grep -qi Ubuntu /proc/version; then
   echo "Setup for Ubuntu"
   bash "$PWD/bin/setup_ubuntu.sh"
+elif grep -qi Arch /proc/version; then
+  echo "Setup for ArchLinux"
+  bash "$PWD/bin/setup_archlinux.sh"
 else
   echo "Unsupport"
 fi

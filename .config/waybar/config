@@ -1,0 +1,73 @@
+// 公式Document: https://github.com/Alexays/Waybar/wiki/Configuration
+{
+    "layer": "bottom", // 表示レイヤーを一番下に設定
+    "position": "top", // waybarを表示する位置をtopに設定
+    "height": 30,      // waybarの表示の高さを設定
+    "spacing": 0,      // wayber上で表示するモジュール間のスペースを0に設定
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    //"modules-center": ["sway/window"],
+    "modules-right": ["idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "battery", "clock", "tray"],
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
+    },
+    "clock": {
+    	"interval": 60,
+        "format": "{:%Y-%m-%d %H:%M}",
+    },
+    "cpu": {
+    	"interval": 10,
+        "format": "{usage}% ",
+        "tooltip": false
+    },
+    "memory": {
+    	"interval": 10,
+        "format": "{}% "
+    },
+    "temperature": {
+    	"interval": 30,
+        "critical-threshold": 80,
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", ""]
+    },
+    "backlight": {
+        "format": "{percent}% {icon}",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+    "battery": {
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "network": {
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        //"format-alt": "{ifname}: {ipaddr}/{cidr}",
+    },
+    "pulseaudio": {
+        "format": "{volume}% {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+}
+

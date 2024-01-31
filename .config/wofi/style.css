@@ -1,0 +1,30 @@
+* {
+  border-radius: 5p;
+}
+
+window {
+  font-size: 32px;`
+  font-family: 'Roboto Mono Medium';
+  background-color: rgba(50, 50, 50, 0.9);
+  color: white;
+}
+
+#entry {
+  padding: 0.5em;
+}
+
+#entry:selected {
+  background-color: #bbccdd;
+}
+
+/* カーソル */
+#text:selected {
+  color: #333333
+}
+
+/* 入力欄 */
+#input {
+  background-color: rgba(50, 50, 50, 0.5);
+  color: white;
+  padding: 0.5em;
+}
