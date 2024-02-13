@@ -31,5 +31,3 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=244"
 # enhancdの設定
 # 移動後にexaコマンドを実行
 ENHANCD_HOOK_AFTER_CD="exa"
-# enhancdのlogファイルを.config/enhancd配下に変更する
-ENHANCD_DIR="${XDG_CONFIG_HOME}/enhancd"
